@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 LABEL maintainer="mritd <mritd1234@gmail.com>"
 
@@ -6,13 +6,13 @@ ARG TZ='Asia/Shanghai'
 
 ENV TZ $TZ
 ENV SS_LIBEV_VERSION 3.2.0
-ENV KCP_VERSION 20180316
+ENV KCP_VERSION 20180810
 ENV SS_DOWNLOAD_URL https://github.com/shadowsocks/shadowsocks-libev/releases/download/v${SS_LIBEV_VERSION}/shadowsocks-libev-${SS_LIBEV_VERSION}.tar.gz
 ENV OBFS_DOWNLOAD_URL https://github.com/shadowsocks/simple-obfs.git
 ENV KCP_DOWNLOAD_URL https://github.com/xtaci/kcptun/releases/download/v${KCP_VERSION}/kcptun-linux-amd64-${KCP_VERSION}.tar.gz
 
-RUN apk upgrade --update \
-    && apk add bash tzdata libsodium \
+RUN apk upgrade \
+    && apk add bash tzdata libsodium rng-tools \
     && apk add --virtual .build-deps \
         autoconf \
         automake \
